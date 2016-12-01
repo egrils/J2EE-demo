@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+ 
+	<!-- 页面操作根据这里的设置进行操作 --> 
+	<package name="default" namespace="/" extends="struts-default"> 
+	 	<!-- action名字可以自由定义,class指向刚才创建的类--> 
+		<action name="testHello" class="hello.HelloWorld"> 
+			 <!-- 当有一个动作或请求叫做testHello时， 
+			 使用类hello.HelloWorld的方法execute来处理 -->   
+			<!-- 如果返回值=success，跳转到test.jsp -->  
+			<result name="success">/hello.jsp</result> 
+		</action>
+		<action name="loginUser" class="hello.Login" method="check">  
+				
+			<result type="redirectAction" >                
+				<param name="actionName">testHello</param>    
+				<param name="namespace">/</param>  
+			</result>
+			<result name="fail">/login.jsp</result> 
+		</action>
+	</package>
+</struts>      
